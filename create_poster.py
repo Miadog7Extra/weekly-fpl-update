@@ -15,11 +15,11 @@ def create_poster(fixtures, managers, standings):
 
     standings_list = standings[0]
 
-    standings_table = [[team_id_to_name[team['team_id']], team['rank'], team['points'], 
+    standings_table = [[team['rank'], team_id_to_name[team['team_id']], team['points'], 
                         team['won'], team['draw'], team['lost'], team['points_for'], team['points_against']] 
                        for team in standings_list]
     
-    col_labels = ['Team', 'Rank', 'Total Points', 'Won', 'Draw', 'Lost', 'Points for', 'Points against']
+    col_labels = ['Rank', 'Team', 'Total Points', 'Won', 'Draw', 'Lost', 'Points for', 'Points against']
     ax.table(cellText=standings_table, colLabels=col_labels, cellLoc='center', loc='center')
 
     # Save standings table to image
