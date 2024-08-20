@@ -23,3 +23,4 @@ Kamoversikt neste uke:
 1. Kamper
 2. Lagoppstillinger
 3. Tabell
+4. Statestikk fra foregåend møter
