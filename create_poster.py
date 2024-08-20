@@ -58,4 +58,4 @@ def create_poster(fixtures, managers, standings):
         y_offset += 40
 
     # Save the final poster image
-    poster.save("league_poster.png")
+    poster.save("utgave1.png")
