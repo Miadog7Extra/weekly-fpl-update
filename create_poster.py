@@ -4,17 +4,15 @@ import io
 
 def create_poster_preview(fixtures, managers, standings):
     # Access the first (and only) list inside the managers list
-    managers_list = managers[0]
 
     # Map team IDs to names
-    team_id_to_name = {m['team_id']: m['team_name'] for m in managers_list}
+    team_id_to_name = {m['team_id']: m['team_name'] for m in managers}
 
     # Create styled standings table
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.axis('tight')
     ax.axis('off')
 
-    standings_list = standings[0]
 
     standings_table = [
         [
@@ -27,7 +25,7 @@ def create_poster_preview(fixtures, managers, standings):
             team['points_for'],
             team['points_against']
         ] 
-        for team in standings_list
+        for team in standings
     ]
     
     col_labels = ['Team', 'Rank', 'Points', 'Won', 'Draw', 'Lost', 'For', 'Against']

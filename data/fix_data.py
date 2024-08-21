@@ -1,16 +1,15 @@
 
 def generate_team_id_to_name(managers):
-    managers_list = managers[0]
 
     # Map team IDs to names
-    team_id_to_name = {m['team_id']: m['team_name'] for m in managers_list}
+    team_id_to_name = {m['team_id']: m['team_name'] for m in managers}
 
     return team_id_to_name
 
 def generate_fixtures_html(fixtures, team_id_to_names):
     fixtures_html = ""
-    fixtures_list = fixtures[0]
-    for fixture in fixtures_list:
+
+    for fixture in fixtures:
         home_team_name = team_id_to_names.get(fixture['home_team'], "Unknown Team")
         away_team_name = team_id_to_names.get(fixture['away_team'], "Unknown Team")
         home_team_points = fixture['home_team_points']
@@ -36,9 +35,8 @@ def generate_table_html(standings, team_id_to_names):
             <th>-</th>
         </tr>
     """
-    standings_list = standings[0]
 
-    for standing in standings_list:
+    for standing in standings:
         rank = standing['rank']
         team_name = team_id_to_names.get(standing['team_id'], "Unknown Team")
         points = standing['points']

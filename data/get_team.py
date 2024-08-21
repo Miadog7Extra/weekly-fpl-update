@@ -4,10 +4,12 @@ def get_team_top_players(team_id, gamweek_number):
     base_url = 'https://draft.premierleague.com/api/' 
 
 
-    r = requests.get(base_url+f'entry/{team_id}/event/{gamweek_number}').json()
+    r = requests.get(base_url+f'entry/{team_id}/event/{gamweek_number}/').json()
 
+    print(base_url + f'entry/{team_id}/event/{gamweek_number}/')
 
     players = []
+    players.append({'team_id': team_id})
 
     for entry in r["picks"]:
         player_id = entry['element']
@@ -61,6 +63,6 @@ def get_gameweek_fixtures(gameweek):
 
     return fixture_ids
 
-print(get_team_top_players(481825, 1))
+#print(get_team_top_players(481825, 1))
 
 #print(get_gameweek_fixtures(1))

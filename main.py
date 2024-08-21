@@ -1,16 +1,27 @@
 from data.get_details import get_managers, get_gameweek_fixtures, get_standings
 from data.fix_data import generate_team_id_to_name, generate_fixtures_html, generate_table_html, fill_html_template
+from data.get_team import get_team_top_players
 
 def main():
 
     gameweek_number = 1
     league_code = 108434
 
-    fixtures = [get_gameweek_fixtures(league_code, gameweek_number)]
-    managers = [get_managers(league_code)]
-    standings = [get_standings(league_code)]
+    fixtures = get_gameweek_fixtures(league_code, gameweek_number)
+    managers = get_managers(league_code)
+    standings = get_standings(league_code)
 
     team_id_to_names = generate_team_id_to_name(managers)
+
+    players = []
+    for manager in managers:
+        team_ids = manager['team_id']
+        team_ids = int(team_ids)
+        print(team_ids)
+        team_players = get_team_top_players(team_ids, gameweek_number)
+        players.extend(team_players)
+        
+
 
     fixtures_html = generate_fixtures_html(fixtures, team_id_to_names)
     table_html = generate_table_html(standings, team_id_to_names)

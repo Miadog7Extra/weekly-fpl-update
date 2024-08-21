@@ -10,7 +10,7 @@ def get_managers(league_id):
     for entry in r['league_entries']:
         manager_name = f"{entry['player_first_name']} {entry['player_last_name']}"
         team_name = entry['entry_name']
-        team_id = entry['id']
+        team_id = entry['entry_id']
         managers.append({'manager': manager_name, 'team_name': team_name, 'team_id': team_id})
 
     return managers
@@ -60,6 +60,7 @@ def get_standings(league_id):
     return standings
 
 
-print(get_managers(108434),
-get_gameweek_fixtures(108434, 1),
-get_standings(108434))
+#print(get_managers(108434))
+#print(get_managers(108434),
+#get_gameweek_fixtures(108434, 1),
+#get_standings(108434))
