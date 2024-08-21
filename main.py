@@ -13,13 +13,18 @@ def main():
 
     team_id_to_names = generate_team_id_to_name(managers)
 
-    players = []
+    teams = {}
+
     for manager in managers:
-        team_ids = manager['team_id']
-        team_ids = int(team_ids)
+        entry_ids = manager['entry_id']
+        team_ids = int(entry_ids)
         print(team_ids)
+
         team_players = get_team_top_players(team_ids, gameweek_number)
-        players.extend(team_players)
+        
+        teams[team_ids] = team_players
+
+    print(teams)
         
 
 

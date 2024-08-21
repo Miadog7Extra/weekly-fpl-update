@@ -1,26 +1,25 @@
 import requests
 
-def get_team_top_players(team_id, gamweek_number):
+def get_team_top_players(team_id, gameweek_number):
     base_url = 'https://draft.premierleague.com/api/' 
+    
+    r = requests.get(base_url+f'entry/{team_id}/event/{gameweek_number}').json()
 
-
-    r = requests.get(base_url+f'entry/{team_id}/event/{gamweek_number}/').json()
-
-    print(base_url + f'entry/{team_id}/event/{gamweek_number}/')
 
     players = []
-    players.append({'team_id': team_id})
 
     for entry in r["picks"]:
         player_id = entry['element']
         player_position = entry["position"]
         players.append({'player_id': player_id, 'player_position': player_position, 'benched': False, 'player_points': 0, 'player_name': 'unknown'})
     
+    print(players)
+
     for player in players:
-        if player["player_position"] > 11:
+        if player['player_position'] > 11:
             player.update({'benched': True})
     
-    get_player_names(players, gamweek_number)
+    get_player_names(players, gameweek_number)
     
     return players
     

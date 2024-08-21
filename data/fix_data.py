@@ -67,5 +67,5 @@ def fill_html_template(html_template, fixtures_html, table_html, gameweek_number
     # Replace the placeholder '{{ fixtures }}' in the template with the actual fixtures HTML
     filled_html = html_template.replace("{{ fixtures }}", fixtures_html)
     filled_html = filled_html.replace("{{ table_standings }}", table_html)
-    filled_html = filled_html.replace("{{ gamweek_number }}", gameweek_number)
+    filled_html = filled_html.replace("{{ gameweek_number }}", gameweek_number)
     return filled_html

@@ -10,8 +10,9 @@ def get_managers(league_id):
     for entry in r['league_entries']:
         manager_name = f"{entry['player_first_name']} {entry['player_last_name']}"
         team_name = entry['entry_name']
-        team_id = entry['entry_id']
-        managers.append({'manager': manager_name, 'team_name': team_name, 'team_id': team_id})
+        team_id = entry['id']
+        entry_id = entry['entry_id']
+        managers.append({'manager': manager_name, 'team_name': team_name, 'team_id': team_id, 'entry_id': entry_id})
 
     return managers
 
