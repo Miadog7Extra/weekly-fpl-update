@@ -60,6 +60,6 @@ def get_standings(league_id):
     return standings
 
 
-get_managers(108434)
-get_gameweek_fixtures(108434, 1)
-get_standings(108434)
+print(get_managers(108434),
+get_gameweek_fixtures(108434, 1),
+get_standings(108434))
