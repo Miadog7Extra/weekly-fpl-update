@@ -1,12 +1,11 @@
 
 def generate_team_id_to_name(managers):
 
-    # Map team IDs to names
     team_id_to_name = {m['team_id']: m['team_name'] for m in managers}
 
     return team_id_to_name
 
-def generate_fixtures_html(fixtures, team_id_to_names):
+def generate_fixtures_html(fixtures, team_id_to_names, teams):
     fixtures_html = ""
 
     for fixture in fixtures:
@@ -15,8 +14,38 @@ def generate_fixtures_html(fixtures, team_id_to_names):
         home_team_points = fixture['home_team_points']
         away_team_points = fixture['away_team_points']
         
-        # Generate HTML for each fixture
-        fixture_html = f"<p>{home_team_name} {home_team_points} - {away_team_points} {away_team_name}</p>"
+
+        fixture_html = "<div class='fixture'>"
+
+
+        home_team_top_players = sorted(
+            teams.get(fixture['home_team'], []), 
+            key=lambda x: x['player_points'], 
+            reverse=True
+        )[:3]
+        
+        fixture_html += f"<div class='team'><h3>{home_team_name}</h3><ul>"
+        for player in home_team_top_players:
+            fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng</li>"
+        fixture_html += "</ul></div>"
+
+        fixture_html += f"<div class='result'><p>{home_team_points} - {away_team_points}</p></div>"
+
+
+        away_team_top_players = sorted(
+            teams.get(fixture['away_team'], []), 
+            key=lambda x: x['player_points'], 
+            reverse=True
+        )[:3]
+        
+        fixture_html += f"<div class='team'><h3>{away_team_name}</h3><ul>"
+        for player in away_team_top_players:
+            fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng</li>"
+        fixture_html += "</ul></div>"
+
+
+        fixture_html += "</div>"
+
         fixtures_html += fixture_html + "\n"
     
     return fixtures_html
@@ -64,7 +93,6 @@ def generate_table_html(standings, team_id_to_names):
     return table_html
 
 def fill_html_template(html_template, fixtures_html, table_html, gameweek_number):
-    # Replace the placeholder '{{ fixtures }}' in the template with the actual fixtures HTML
     filled_html = html_template.replace("{{ fixtures }}", fixtures_html)
     filled_html = filled_html.replace("{{ table_standings }}", table_html)
     filled_html = filled_html.replace("{{ gameweek_number }}", gameweek_number)

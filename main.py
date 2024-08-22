@@ -17,18 +17,17 @@ def main():
 
     for manager in managers:
         entry_ids = manager['entry_id']
-        team_ids = int(entry_ids)
-        print(team_ids)
+        entry_ids = int(entry_ids)
+        team_id = manager['team_id']
 
-        team_players = get_team_top_players(team_ids, gameweek_number)
+        team_players = get_team_top_players(entry_ids, gameweek_number)
         
-        teams[team_ids] = team_players
-
-    print(teams)
-        
+        teams[team_id] = team_players
 
 
-    fixtures_html = generate_fixtures_html(fixtures, team_id_to_names)
+
+
+    fixtures_html = generate_fixtures_html(fixtures, team_id_to_names, teams)
     table_html = generate_table_html(standings, team_id_to_names)
 
     with open('html_content.html', 'r') as html_file:
