@@ -23,10 +23,13 @@ def generate_fixtures_html(fixtures, team_id_to_names, teams):
             key=lambda x: x['player_points'], 
             reverse=True
         )[:3]
-        
+
         fixture_html += f"<div class='team'><h3>{home_team_name}</h3><ul>"
         for player in home_team_top_players:
-            fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng</li>"
+            if player['benched'] == True:
+                fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng - Benket</li>"
+            else:
+                fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng</li>"
         fixture_html += "</ul></div>"
 
         fixture_html += f"<div class='result'><p>{home_team_points} - {away_team_points}</p></div>"
@@ -40,7 +43,10 @@ def generate_fixtures_html(fixtures, team_id_to_names, teams):
         
         fixture_html += f"<div class='team'><h3>{away_team_name}</h3><ul>"
         for player in away_team_top_players:
-            fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng</li>"
+            if player['benched'] == True:
+                fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng - Benket</li>"
+            else:
+                fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng</li>"
         fixture_html += "</ul></div>"
 
 
