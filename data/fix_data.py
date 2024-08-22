@@ -26,8 +26,8 @@ def generate_fixtures_html(fixtures, team_id_to_names, teams):
 
         fixture_html += f"<div class='team'><h3>{home_team_name}</h3><ul>"
         for player in home_team_top_players:
-            if player['benched'] == True:
-                fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng - Benket</li>"
+            if player['benched']:
+                fixture_html += f"<li style='color: red;'>{player['player_name']}: {player['player_points']} poeng</li>"
             else:
                 fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng</li>"
         fixture_html += "</ul></div>"
@@ -43,8 +43,8 @@ def generate_fixtures_html(fixtures, team_id_to_names, teams):
         
         fixture_html += f"<div class='team'><h3>{away_team_name}</h3><ul>"
         for player in away_team_top_players:
-            if player['benched'] == True:
-                fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng - Benket</li>"
+            if player['benched']:
+                fixture_html += f"<li style='color: red;'>{player['player_name']}: {player['player_points']} poeng</li>"
             else:
                 fixture_html += f"<li>{player['player_name']}: {player['player_points']} poeng</li>"
         fixture_html += "</ul></div>"
