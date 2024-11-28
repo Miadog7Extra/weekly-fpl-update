@@ -4,7 +4,7 @@ from data.get_team import get_team_top_players
 
 def main():
 
-    gameweek_number = 11
+    gameweek_number = 12
     league_code = 108434
 
     fixtures = get_gameweek_fixtures(league_code, gameweek_number)
